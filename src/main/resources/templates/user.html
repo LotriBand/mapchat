@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>bootstrap</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-sacle=1"/>
+    <meta name="viewport" content="width=device-width, initial-sacle=1,maximum-scale=1, user-scalable=no"/>
+</head>
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<body>
+<!-- 容器 -->
+
+
+<div class="container table-bordered">
+<form class="form-group form-inline" th:action="@{/user/add}" method="post">
+    <input class="form-control " type="text" name="name" value="" placeholder="请输入用户名" />
+    <input class="form-control " type="password" name="password" value="" placeholder="请输入密码" />
+    <input type="submit" class="btn btn-success " value="提交"/>
+</form>
+    <table class="table table-bordered table-hover table-responsive">
+        <thead >
+        <tr class="success text-info">
+            <th class="text-center">ID</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">PASSWORD</th>
+            <th class="text-center">OPERATION</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="text-center text-info" th:each="user : ${users}">
+            <th class="text-center"  th:text="${user.id}">1</th>
+            <td th:text="${user.name}">Mark</td>
+            <td th:text="${user.password}">Otto</td>
+            <td><a th:href="@{/user/delete(id=${user.id})}" class=" btn btn-sm btn-danger">delete</a></td>
+        </tr>
+       
+        </tbody>
+    </table>
+<!-- 动态分页操作 -->
+<nav aria-label="Page navigation" class="container text-center">
+  <ul class="pagination">
+    <li th:class="${page.number} != 0?'':'disabled'"><a href="#" th:href="@{/user/list(page=0)}">首页</a></li>
+    <li th:class="${page.number} != 0?'':'disabled'"><a href="#" th:href="@{/user/list(page=${page.number}-1)}">上一页</a></li>
+    <!-- for循环 -->
+
+    <li><a href="#" th:if="${page.number-3} ge 0" th:href="@{/user/list(page=${page.number}-3)}" th:text="${page.number}-2">1</a></li>
+
+    <li><a href="#" th:if="${page.number}-2 ge 0" th:href="@{/user/list(page=${page.number}-2)}" th:text="${page.number}-1">1</a></li>
+    <li><a href="#" th:if="${page.number}-1 ge 0" th:href="@{/user/list(page=${page.number}-1)}" th:text="${page.number}">1</a></li>
+
+    <li class="active"><a href="#" th:href="@{/user/list(page=${page.number})}" th:text="${page.number}+1">1</a></li>
+
+    <li><a href="#" th:if="${page.number}+1 - ${page.totalPages} lt 0" th:href="@{/user/list(page=${page.number}+1)}" th:text="${page.number}+2">1</a></li>
+
+    <li><a href="#" th:if="${page.number}+2 - ${page.totalPages} lt 0" th:href="@{/user/list(page=${page.number}+2)}" th:text="${page.number}+3">1</a></li>
+
+    <li><a href="#" th:if="${page.number}+3 - ${page.totalPages} lt 0" th:href="@{/user/list(page=${page.number}+3)}" th:text="${page.number}+4">1</a></li>
+
+    <li th:class="${page.number}+1 lt ${page.totalPages}?'':'disabled'"><a href="#" th:href="@{/user/list(page=${page.number}+1)}">下一页</a></li>
+
+    <li th:class="${page.number}+1 lt ${page.totalPages}?'':'disabled'"><a href="#" th:href="@{/user/list(page=${page.totalPages}-1)}">尾页</a></li>
+  </ul>
+</nav>
+</div>
+
+</body>
+</html>

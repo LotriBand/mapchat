@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>添加用户</title>
+</head>
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<body>
+
+<div class="container ">
+<form class="form-group form-inline" th:action="@{/user/add}" method="post">
+	<input class="form-control" type="text" name="name" value="" placeholder="请输入用户名" />
+	<input class="form-control" type="password" name="password" value="" placeholder="请输入密码" />
+	<input type="submit" class="btn btn-success" value="提交"/>
+	<input type="button" class="btn btn-danger" value="返回"/>
+</form>
+</div>
+</body>
+</html>
