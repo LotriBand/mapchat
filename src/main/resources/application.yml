@@ -1,0 +1,26 @@
+server:
+  port: 80
+spring:
+  datasource:
+    url:
+    username:
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+    tomcat:
+      max-active:
+      max-idle:
+      min-idle:
+      initial-size:
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy
+  thymeleaf:
+    cache: true
+
+
+
+
